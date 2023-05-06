@@ -1,24 +1,50 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+
+  const [leftPos, setLeftPos] = useState('50')
+
+  const [topPos, setTopPos] = useState('50')
+
+  const [backgroundColor, setBackgroundColor] = useState('')
+
+  const random = (min, max) => {
+    const rand = min + Math.random() * (max - min + 1);
+    return Math.floor(rand);
+  }
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <div className="App" style={{ background: backgroundColor ? `black` : '' }}>
+
+
+
+      <button className='Btn'
+        style={{
+          position: `absolute`,
+          left: `${leftPos}%`,
+          top: `${topPos}%`,
+
+        }}
+
+        onMouseEnter={() => {
+          setLeftPos(random(0, 90))
+          setTopPos(random(0, 90))
+          setBackgroundColor(true)
+
+        }}
+        onClick={() => alert('you win')}>
+        Попробуй нажми
+      </button>
+      <button onClick={() => { setBackgroundColor('') }}>restart</button>
+
+    </div >
   );
 }
 
