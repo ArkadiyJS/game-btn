@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import './App.css';
+import Modal from './modal';
 
 function App() {
 
@@ -10,6 +11,8 @@ function App() {
   const [topPos, setTopPos] = useState('50')
 
   const [backgroundColor, setBackgroundColor] = useState('')
+
+  const [showModal, setShowModal] = useState(false)
 
   const random = (min, max) => {
     const rand = min + Math.random() * (max - min + 1);
@@ -39,10 +42,12 @@ function App() {
           setBackgroundColor(true)
 
         }}
-        onClick={() => alert('you win')}>
+        onClick={() => setShowModal(true)}>
         Попробуй нажми
       </button>
       <button onClick={() => { setBackgroundColor('') }}>restart</button>
+
+      {showModal ? <Modal setShowModal={setShowModal} /> : ''}
 
     </div >
   );
